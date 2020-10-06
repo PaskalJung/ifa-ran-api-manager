@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>IFA RAN API</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="icon" href="https://www.ifa-formation.fr/wp-content/uploads/2020/01/favicon.png" sizes="32x32">
+    </head>
+
+    <body>
+        <div class="container"> 
+        
+            <div style="margin-top: 30px;">
+
+                <div style="margin: auto;">
+                    <p>
+                        <a href="https://ifatech-formation.fr/">
+                            <img src="/logo_ifa_small_2020.png" alt="ifa-logo" height="60">
+                        </a>
+                        
+                    </p>
+                    <hr>
+                    <p>
+                        <span>Getting Started</span> <br>
+                        <span> <b> Add collection </b> http://SERVER_IP:SERVER_PORT/api/db/collection/add</span>
+                    </p>
+                    <hr>
+                    <p>
+                        <b>GET</b> <br><br>
+                        <ul>
+                            <li> <span> <b> List all plants </b> <a target="_blank" href="http://SERVER_IP:SERVER_PORT/api/db/list">http://SERVER_IP:SERVER_PORT/api/db/list</a></span> </li>
+                            <li> <span> <b> Show plant by _id </b> <a target="_blank" href="http://SERVER_IP:SERVER_PORT/api/db/index/5f26cf7c4290a047f50de001">http://SERVER_IP:SERVER_PORT/api/db/index/:id</a> <small>id example: 5f26cf7c4290a047f50de001</small></span> </li>
+                        </ul>
+                    </p>
+                    <hr>
+
+                    <p>
+                        <b>POST</b> <br><br>
+                        <ul>
+                            <li> <span> <b> add plant </b> http://SERVER_IP:SERVER_PORT/api/db/add <small>send body example</small> </span> </li>
+                        </ul>
+                    </p>
+
+                    <p>
+                        <b>PUT</b> <br><br>
+                        <ul>
+                            <li> <span> <b> update plant by _id  </b> http://SERVER_IP:SERVER_PORT/api/db/update/:id <small>id example: 5f26cf7c4290a047f50de004 - send body example</small></span> </li>
+                            
+                        </ul>
+                    </p>
+                    <p>
+                        <b>DELETE</b> <br><br>
+                        <ul>
+                            <li> <span> <b> delete plant by _id  </b> http://SERVER_IP:SERVER_PORT/api/db/delete/:id <small>id example: 5f26cf7c4290a047f50de004</small></span> </li>
+                            
+                        </ul>
+                    </p>
+
+                    <hr>
+                    <p>
+                        <b>body example : </b> <br><br>
+                        &emsp;{ <br>
+                            &emsp;&emsp;"_id": "5f26cf7c4290a047f50de004", <br>
+                            &emsp;&emsp;"plante": "Brocoli", <br>
+                            &emsp;&emsp;"famille": "Brassicacées", <br>
+                            &emsp;&emsp;"color": [ <br>
+                                &emsp;&emsp;&emsp;"Vert", <br>
+                                &emsp;&emsp;&emsp;"Violet" <br>
+                            &emsp;&emsp;], <br>
+                            &emsp;&emsp;"plantDetails": { <br>
+                                &emsp;&emsp;&emsp;"entretien" : "Moyen", <br>
+                                &emsp;&emsp;&emsp;"hauteur" : { <br>
+                                    &emsp;&emsp;&emsp;&emsp;"min" : 45.0,  <br>
+                                    &emsp;&emsp;&emsp;&emsp;"max" : 100.0,  <br>
+                                    &emsp;&emsp;&emsp;&emsp;"unit" : "cm" <br>
+                                &emsp;&emsp;&emsp;}, <br>
+                            &emsp;&emsp;}, <br>
+                            &emsp;&emsp;"classification" : { <br>
+                                &emsp;&emsp;&emsp;"regne" : "Plantae", <br> 
+                                &emsp;&emsp;&emsp;"sousRegne" : "Tracheobionta", <br> 
+                                &emsp;&emsp;&emsp;"division" : "Magnoliophyta",  <br>
+                                &emsp;&emsp;&emsp;"classe" : "Magnoliopsida",  <br>
+                                &emsp;&emsp;&emsp;"sousClasse" : "Dilleniidae",  <br>
+                                &emsp;&emsp;&emsp;"ordre" : "Capparales",  <br>
+                                &emsp;&emsp;&emsp;"famille" : "Brassicaceae",  <br>
+                                &emsp;&emsp;&emsp;"genre" : "Brassica",  <br>
+                                &emsp;&emsp;&emsp;"espece" : "Brassica oleracea",  <br>
+                                &emsp;&emsp;&emsp;"variete" : "Brassica oleracea var. asparagoides" <br>
+                            &emsp;&emsp;} <br>
+                        &emsp;}<br>
+
+                        
+                    </p>
+                    <hr>
+                    <p>
+                        <span><a target="blank" href="/">return to index</a></span>
+                    </p>
+
+                    <p>
+                        <h5>File</h5>
+                        <span>database.html</span>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <script
+            src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous">
+        </script>
+
+
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    </body>
+    
+</html>
+
+
+
