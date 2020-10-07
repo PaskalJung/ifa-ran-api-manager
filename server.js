@@ -4,20 +4,17 @@ var mongoose = require('mongoose');
 const morgan = require('morgan');
 var JSONFILE = require('./models/jsonFile.js');
 var JSONMODEL = require('./models/jsonModel.js');
+const nocache = require('nocache');
 var app = express();
 require('dotenv').config() // console.log(process.env)
 
 setServer()
 
+app.use(nocache());
+
 app.use(morgan('dev'));  
-// app.use('/', morgan('dev'));
-
-// app.use(function(req, res, next) {
-//     console.log(req.url)
-//     next()
-// })
+// app.use(morgan('combined'));
    
-
 // prends en charge les requetes du type ("Content-type", "application/x-www-form-urlencoded")
 app.use(bodyParser.urlencoded({
     extended: true
@@ -85,7 +82,7 @@ app.get('/404', function(req, res) {
  */
 
 // GET list json file
-app.get('/api/json-file/json', function(req, res) {
+app.get('/api/json-file/', function(req, res) {
     console.log("JSONFILE", JSONFILE);
 
     // result sent

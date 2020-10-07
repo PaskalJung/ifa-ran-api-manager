@@ -17,6 +17,7 @@
     "mongodb": "^2.2.30",
     "mongoose": "^5.10.3",
     "morgan": "^1.10.0",
+    "nocache": "^2.1.0",
     "nodemon": "^1.11.0"
   }
 }
