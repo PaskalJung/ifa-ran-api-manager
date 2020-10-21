@@ -21,7 +21,7 @@ Modify code for your environment in file : .env<br/>
 
 Start the NodeJs Server<br/>
 command: node server.js<br/>
-command: nodemon server.js --watch<br/>
+command: nodemon server.js<br/>
 
 ## Packages 
 
