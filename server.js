@@ -7,6 +7,7 @@ var JSONMODEL = require('./models/jsonModel.js');
 const nocache = require('nocache');
 var app = express();
 const ejs = require('ejs')
+var urllib = require('urllib');
 require('dotenv').config() // console.log(process.env)
 
 setServer()
@@ -236,17 +237,6 @@ app.get('/api/db/index/:id/wiki', function(req, res) {
         }
          else {
             console.log("collection", collection);
-
-            urllib.request(process.env.WIKI_API + '=' + collection.plante, function (err, data, res) {
-                if (err) {
-                    throw err; // you need to handle error
-                }
-                console.log(res.statusCode);
-                console.log(res.headers);
-                // data is Buffer instance
-                console.log(data.toString());
-                return res.status(200).json(collection);
-            });
 
             return res.status(200).json(collection);
         }
