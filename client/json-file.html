@@ -31,8 +31,8 @@
                     <p>
                         <b>GET</b> <br><br>
                         <ul>
-                            <li> <span> <b> List all plants </b> <a target="_blank" href="/api/json-file/">http://SERVER_IP:SERVER_PORT/api/json-file/</a></span> </li>
-                            <li> <span> <b> Show plant by _id </b> <a target="_blank" href="/api/json-file/index/5f26cf7c4290a047f50de001">http://SERVER_IP:SERVER_PORT/api/json-file/index/:id</a> <small>id example: 5f26cf7c4290a047f50de001</small></span> </li>
+                            <li> <span> <b> List all plants </b> <a target="_blank" href="/api/json-file/">http://<%= host %>:<%= port %>api/json-file/</a></span> </li>
+                            <li> <span> <b> Show plant by _id </b> <a target="_blank" href="/api/json-file/index/5f26cf7c4290a047f50de001">http://<%= host %>:<%= port %>api/json-file/index/:id</a> <small>id example: 5f26cf7c4290a047f50de001</small></span> </li>
                         </ul>
                     </p>
                     <hr>
@@ -40,22 +40,22 @@
                     <p>
                         <b>POST</b> <br><br>
                         <ul>
-                            <li> <span> <b> test a post </b> http://SERVER_IP:SERVER_PORT/api/json-file/post/test <small>send body example</small> </span> </li>
-                            <li> <span> <b> add plant </b> http://SERVER_IP:SERVER_PORT/api/json-file/add <small>send body example</small> </span> </li>
+                            <li> <span> <b> test a post </b> http://<%= host %>:<%= port %>api/json-file/post/test <small>send body example</small> </span> </li>
+                            <li> <span> <b> add plant </b> http://<%= host %>:<%= port %>api/json-file/add <small>send body example</small> </span> </li>
                         </ul>
                     </p>
 
                     <p>
                         <b>PUT</b> <br><br>
                         <ul>
-                            <li> <span> <b> update plant by _id  </b> http://SERVER_IP:SERVER_PORT/api/json-file/update/:id <small>id example: 5f26cf7c4290a047f50de004 - send body example</small></span> </li>
+                            <li> <span> <b> update plant by _id  </b> http://<%= host %>:<%= port %>api/json-file/update/:id <small>id example: 5f26cf7c4290a047f50de004 - send body example</small></span> </li>
                             
                         </ul>
                     </p>
                     <p>
                         <b>DELETE</b> <br><br>
                         <ul>
-                            <li> <span> <b> delete plant by _id  </b> http://SERVER_IP:SERVER_PORT/api/json-file/delete/:id <small>id example: 5f26cf7c4290a047f50de004</small></span> </li>
+                            <li> <span> <b> delete plant by _id  </b> http://<%= host %>:<%= port %>api/json-file/delete/:id <small>id example: 5f26cf7c4290a047f50de004</small></span> </li>
                             
                         </ul>
                     </p>

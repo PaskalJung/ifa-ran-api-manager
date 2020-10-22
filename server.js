@@ -6,6 +6,7 @@ var JSONFILE = require('./models/jsonFile.js');
 var JSONMODEL = require('./models/jsonModel.js');
 const nocache = require('nocache');
 var app = express();
+const ejs = require('ejs')
 require('dotenv').config() // console.log(process.env)
 
 setServer()
@@ -19,6 +20,9 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({
     extended: true
 }))
+
+// app.engine('html', require('ejs').renderFile);
+app.engine('html', ejs.renderFile);
 
 
 // prends en charge les requetes du type ("Content-type", "application/json")
@@ -55,17 +59,18 @@ app.use(function (req, res, next) {
 
 // GET send index.html
 app.get('/', function(req, res) {
-    return res.status(200).sendFile(__dirname + '/client/index.html')
+    // return res.status(200).sendFile(__dirname + '/client/index.html')
+    res.render(__dirname + '/client/index.html', {host: process.env.ROOT_URL, port: process.env.SERVER_PORT});
 });
 
 // GET send jsonFile.html
 app.get('/json-file', function(req, res) {
-    return res.status(200).sendFile(__dirname + '/client/json-file.html')
+    res.render(__dirname + '/client/json-file.html', {host: process.env.ROOT_URL, port: process.env.SERVER_PORT});
 });
 
 // GET send database.html
 app.get('/database', function(req, res) {
-    return res.status(200).sendFile(__dirname + '/client/database.html')
+    res.render(__dirname + '/client/database.html', {host: process.env.ROOT_URL, port: process.env.SERVER_PORT});
 });
 
 // GET send 404.html
@@ -217,6 +222,38 @@ app.get('/api/db/index/:id', function(req, res) {
 
 });
 
+app.get('/api/db/index/:id/wiki', function(req, res) {
+    
+    JSONMODEL.find({_id: req.params.id}, function(err, collection) {
+        if (err) {
+            console.log("err", err);
+            return res.status(404).json({error: 'plant id ' + req.params.id + ' not found - status 404'})
+        }
+
+        if (collection.length == 0) {
+            console.log("!collection", err);
+            return res.status(404).json({error: 'plant id ' + req.params.id + ' not found - status 404'})
+        }
+         else {
+            console.log("collection", collection);
+
+            urllib.request(process.env.WIKI_API + '=' + collection.plante, function (err, data, res) {
+                if (err) {
+                    throw err; // you need to handle error
+                }
+                console.log(res.statusCode);
+                console.log(res.headers);
+                // data is Buffer instance
+                console.log(data.toString());
+                return res.status(200).json(collection);
+            });
+
+            return res.status(200).json(collection);
+        }
+    });
+
+});
+
 // POST add in database
 app.post('/api/db/add', function(req, res) {
     
@@ -284,6 +321,9 @@ app.delete('/api/db/delete/:id', function(req, res) {
     });
 });
 
+
+// manage collection
+
 // GET add collection in database
 app.get('/api/db/collection/add', function(req, res) {
     
@@ -299,6 +339,7 @@ app.get('/api/db/collection/add', function(req, res) {
             }
             else{
                 console.log(success);
+                return res.status(200).json(JSONFILE);
             }
         });
 
@@ -309,6 +350,30 @@ app.get('/api/db/collection/add', function(req, res) {
 
 });
 
+
+// DELETE delete by _id in database
+app.get('/api/db/delete-all', function(req, res) {
+
+    console.log("id", req.params.id);
+
+    JSONMODEL.remove({}, function(err, response){
+        if(err){
+            console.log(err);
+            return res.status(500).json({error: 'plant delete Error - status 500'})
+        }
+        else{
+            if(response == null) {
+                return res.status(404).json({error: 'plant delete - status 404'})
+            }
+            else {
+                console.log(response);
+                console.log("deleted");
+                res.status(200).json({deleted_id:  response});
+            }
+            
+        }
+    });
+});
 
 // FUNCTION
 function setServer() {
@@ -325,12 +390,12 @@ function setServer() {
           app.listen(process.env.SERVER_PORT, () => {
             console.log(" ");
             console.log("------- ");
-            console.log('SERVER is listening on url: ' + process.env.ROOT_URL + ':' + process.env.SERVER_PORT);
+            console.log('SERVER is listening on url: http://' + process.env.ROOT_URL + ':' + process.env.SERVER_PORT);
             console.log(" ");
             console.log("------- ");
             console.log('SERVER ENV: ');
-            console.log(' - ROOT_URL:' + process.env.ROOT_URL);
-            console.log(' - SERVER_PORT:' + process.env.SERVER_PORT);
+            console.log(' - ROOT_URL: http://' + process.env.ROOT_URL);
+            console.log(' - SERVER_PORT: ' + process.env.SERVER_PORT);
             
             
   
